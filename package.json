@@ -1,0 +1,13 @@
+{
+  "name": "crud-api",
+  "version": "1.0.0",
+  "description": "A simple CRUD API on Node.js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": ["CRUD","API","Node.js"],
+  "author": "atcherdsd",
+  "license": "ISC"
+}
