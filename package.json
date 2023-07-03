@@ -5,6 +5,7 @@
   "scripts": {
     "start:dev": "nodemon ./src/index.ts",
     "start:prod": "tsc && node ./dist/index.js",
+    "start:multi": "npx cross-env CASE=multiple nodemon -r dotenv/config",
     "test": "jest"
   },
   "keywords": [

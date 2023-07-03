@@ -6,10 +6,11 @@ import { PORT, endpoint } from './utilities/utils';
 
 export class SingleServer {
   public usersDataBase: IUser[] = [];
-  public port = PORT;
+  public port = process.env.id ? (PORT + Number(process.env.id)) : PORT;
 
   public server = http.createServer((request, response) => {
     try {
+      response.write('Connection with server');
       switch (request.method as Methods) {
         case MethodsNames.GET:
           this.makeGet(request, response);
@@ -35,13 +36,17 @@ export class SingleServer {
     }
   });
 
+  constructor(public processWorker?: NodeJS.Process) {}
+
   public start() {
     this.server.listen(this.port);
+    console.log(`Server is running on ${this.port}`);
   }
 
   public close() {
     this.usersDataBase = [];
     this.server.close();
+    process.exit();
   }
 
   private validateIdType(id: string) {
@@ -72,7 +77,7 @@ export class SingleServer {
         this.getErrorResponse(
           response, 
           StatusCodes.BAD_REQUEST, 
-          StatusMessages.BadRequest
+          StatusMessages.WrongEndpoint,
         );
       }
       return;
@@ -101,7 +106,7 @@ export class SingleServer {
       this.getErrorResponse(
         response, 
         StatusCodes.BAD_REQUEST, 
-        StatusMessages.BadRequest
+        StatusMessages.NoRequeredData
       );
     } catch {
       this.getErrorResponse(
