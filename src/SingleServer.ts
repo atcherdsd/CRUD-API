@@ -46,7 +46,6 @@ export class SingleServer {
   public close() {
     this.usersDataBase = [];
     this.server.close();
-    process.exit();
   }
 
   private validateIdType(id: string) {
@@ -172,7 +171,7 @@ export class SingleServer {
             const newUser = { ...body, id: v4() };
             this.getSuccessResponse(
               response, 
-              StatusCodes.OK, 
+              StatusCodes.CREATED, 
               JSON.stringify(newUser)
             );
             this.usersDataBase.push(newUser);
