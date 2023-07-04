@@ -10,7 +10,7 @@ export class SingleServer {
 
   public server = http.createServer((request, response) => {
     try {
-      response.write('Connection with server');
+
       switch (request.method as Methods) {
         case MethodsNames.GET:
           this.makeGet(request, response);

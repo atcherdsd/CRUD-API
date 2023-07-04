@@ -34,8 +34,7 @@ DELETE api/users/{userId} delete an existing user from the database
 
 ## How to use
 
-Send your requests to the
-`http://localhost:4000/api/users`
+Send your requests to the `http://localhost:4000/api/users`
 
 **POST** request should include body with JSON object with
 
